@@ -6,28 +6,41 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#000] text-white border-b border-b-[#46C190]" >
+    <nav className="bg-black text-white border-b border-b-green-500/20">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <a className="text-3xl font-bold tracking-wide" href="#">
-          ATR3NA
+        <a className="text-2xl font-bold tracking-wider" href="#">
+          <span className="text-yellow-500/90 font-bold">A</span>
+          <span className="text-yellow-500/90 font-bold">I</span>
+          <span className="text-yellow-500/90 font-bold">R</span>
+          <span className="text-yellow-500/90 font-bold">E</span>
+          <span className="text-yellow-500/90 font-bold">N</span>
+          <span className="text-yellow-500/90 font-bold">A</span>
         </a>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex space-x-8">
-          {["Browser", "Categories"].map(
-            (item) => (
+        {/* Desktop Menu - Right Aligned */}
+        <div className="hidden lg:flex items-center space-x-8">
+          <ul className="flex space-x-8">
+            {["Browser", "Categories"].map((item) => (
               <li key={item}>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition duration-300"
+                  className="text-gray-300 hover:text-white transition duration-300"
                 >
                   {item}
                 </a>
               </li>
-            )
-          )}
-        </ul>
+            ))}
+          </ul>
+          
+          {/* Sign In Button */}
+          <a 
+            href="#" 
+            className="border border-green-500/70 text-white px-6 py-2 rounded-md hover:bg-green-500/10 transition duration-300"
+          >
+            Sign In
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
@@ -48,21 +61,28 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-gray-800 absolute w-full py-4 shadow-lg">
+        <div className="lg:hidden bg-gray-900 absolute w-full py-4 shadow-lg z-50">
           <ul className="text-center space-y-4">
-            {["Browser", "Categories"].map(
-              (item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="block text-gray-300 hover:text-white transition duration-300"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item}
-                  </a>
-                </li>
-              )
-            )}
+            {["Browser", "Categories"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="block text-gray-300 hover:text-white transition duration-300"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="#"
+                className="inline-block border border-green-500 text-white px-6 py-2 rounded-md hover:bg-green-500/10 transition duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Sign In
+              </a>
+            </li>
           </ul>
         </div>
       )}

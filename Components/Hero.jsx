@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 
@@ -11,14 +11,14 @@ const Hero = () => {
       {!isPlaying && (
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center cursor-pointer">
           <Image
-            src="/heroimg.png" // Thumbnail Image
+            src="/heroimg.png"
             alt="Hero Thumbnail"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             className="z-10"
             onClick={() => setIsPlaying(true)}
           />
-          {/* Play Button Overlay */}
+          ;{/* Play Button Overlay */}
           <button
             onClick={() => setIsPlaying(true)}
             className="absolute px-6 py-5 bg-[#46C190]  text-white text-lg font-semibold rounded-full transition z-20"
@@ -35,7 +35,7 @@ const Hero = () => {
           controls
           className="absolute top-0 left-0 w-full h-full object-cover"
         >
-          <source src="/video.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
         </video>
       )}
 
