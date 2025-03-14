@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/Components/ui/button";
 import { Crown, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -18,6 +18,23 @@ const FoundersClub = () => {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ success: null, message: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile devices
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const validateForm = () => {
     let newErrors = {};
@@ -55,8 +72,8 @@ const FoundersClub = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-        mode: "cors",  // 🔹 Allow CORS
-        credentials: "omit",  // 🔹 Prevent cookies from being sent
+        mode: "cors",
+        credentials: "omit",
       });
 
       const result = await response.json();
@@ -75,55 +92,75 @@ const FoundersClub = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4">
-      <motion.div className="bg-gray-900 rounded-lg overflow-hidden mb-12">
-        <section className="py-12 px-4 bg-black text-white relative">
+    <div className="w-full max-w-6xl mx-auto px-3 sm:px-4">
+      <motion.div 
+        className="bg-gray-900 rounded-lg overflow-hidden mb-8 sm:mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <section className="py-8 sm:py-12 px-3 sm:px-4 bg-black text-white relative">
           <div className="max-w-3xl mx-auto text-center">
-            <motion.div className="mx-auto mb-6 flex justify-center">
-              <Crown className="h-12 w-12 text-green-400" />
+            <motion.div 
+              className="mx-auto mb-4 sm:mb-6 flex justify-center"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Crown className="h-10 w-10 sm:h-12 sm:w-12 text-green-400" />
             </motion.div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Join the Founders' Club</h2>
-            <p className="text-gray-400 mb-8">Be among the first 200 content creators to shape the future of Atrena</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">Join the Founders' Club</h2>
+            <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">Be among the first 200 content creators to shape the future of Atrena</p>
 
             {status.success !== null && (
               <motion.div
-                className={`rounded-lg p-6 mb-6 ${
+                className={`rounded-lg p-4 sm:p-6 mb-4 sm:mb-6 ${
                   status.success ? "bg-green-800" : "bg-red-800"
                 }`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="flex items-center justify-center mb-4">
+                <div className="flex items-center justify-center mb-3 sm:mb-4">
                   {status.success ? (
-                    <CheckCircle className="h-10 w-10 text-white" />
+                    <CheckCircle className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   ) : (
-                    <XCircle className="h-10 w-10 text-white" />
+                    <XCircle className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   )}
                 </div>
-                <h3 className="text-lg font-bold">{status.message}</h3>
+                <h3 className="text-base sm:text-lg font-bold">{status.message}</h3>
               </motion.div>
             )}
 
-            <motion.form onSubmit={handleSubmit} className="max-w-lg mx-auto text-left">
-              <div className="grid grid-cols-1 gap-4 mb-6">
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="max-w-lg mx-auto text-left"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 mb-4 sm:mb-6">
                 {[
                   { id: "name", label: "Name:", type: "text" },
                   { id: "sportGame", label: "Sport/Game:", type: "text" },
-                  { id: "mobile", label: "Mobile:", type: "tel" },
-                  { id: "email", label: "Email ID:", type: "email" },
+                  { id: "mobile", label: "Mobile:", type: "tel", inputMode: "numeric" },
+                  { id: "email", label: "Email ID:", type: "email", inputMode: "email" },
                   { id: "platform", label: "Current Stream/Content Platform:", type: "text" },
                   { id: "referral", label: "How did you find us?", type: "text" },
                 ].map((field) => (
                   <div key={field.id}>
-                    <label htmlFor={field.id} className="block text-sm text-gray-400 mb-1">
+                    <label htmlFor={field.id} className="block text-xs sm:text-sm text-gray-400 mb-1">
                       {field.label}
                     </label>
                     <input
                       type={field.type}
                       id={field.id}
                       name={field.id}
+                      inputMode={field.inputMode}
                       value={formData[field.id]}
                       onChange={handleChange}
-                      className={`w-full h-10 px-4 bg-transparent border rounded-md ${
+                      className={`w-full h-9 sm:h-10 px-3 sm:px-4 bg-transparent border rounded-md focus:outline-none focus:ring-1 focus:ring-green-400 ${
                         errors[field.id] ? "border-red-500" : "border-gray-700"
                       }`}
                     />
@@ -135,12 +172,12 @@ const FoundersClub = () => {
               <div className="text-center">
                 <Button
                   type="submit"
-                  className="px-8 py-2 bg-green-400 text-white hover:bg-green-500 rounded font-medium"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-2 bg-green-400 text-white hover:bg-green-500 rounded font-medium transition-colors"
                   disabled={isLoading}
                 >
                   {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <Loader2 className="animate-spin h-5 w-5" /> Submitting...
+                    <div className="flex items-center justify-center gap-2">
+                      <Loader2 className="animate-spin h-4 w-4 sm:h-5 sm:w-5" /> Submitting...
                     </div>
                   ) : (
                     "Sign Up Early"
@@ -149,7 +186,7 @@ const FoundersClub = () => {
               </div>
             </motion.form>
 
-            <p className="text-xs text-gray-500 mt-5">Only 200 spots available</p>
+            <p className="text-2xs sm:text-xs text-gray-500 mt-4 sm:mt-5">Only 200 spots available</p>
           </div>
         </section>
       </motion.div>

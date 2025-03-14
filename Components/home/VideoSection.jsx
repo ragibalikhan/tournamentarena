@@ -1,11 +1,28 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause } from "lucide-react";
 
 const VideoSection = ({ withPagination = false }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -23,9 +40,9 @@ const VideoSection = ({ withPagination = false }) => {
   };
 
   return (
-    <section className="py-8 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="relative aspect-video rounded-lg overflow-hidden group">
+    <section className="py-4 md:py-8 px-2 md:px-4">
+      <div className="w-full max-w-5xl mx-auto">
+        <div className="relative aspect-video rounded-lg overflow-hidden group shadow-lg">
           {/* Video Element */}
           <video
             ref={videoRef}
@@ -34,6 +51,8 @@ const VideoSection = ({ withPagination = false }) => {
             type="video/mp4"
             loop
             playsInline
+            poster="/video-poster.jpg" // Optional: Add a poster image for better UX
+            preload="metadata"
           ></video>
 
           {/* Overlay */}
@@ -43,20 +62,24 @@ const VideoSection = ({ withPagination = false }) => {
           <div className="absolute inset-0 flex items-center justify-center">
             <button
               onClick={togglePlay}
-              className="bg-green-700 text-black w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform"
+              className="bg-green-700 text-black w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+              aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              {isPlaying ? <Pause size={24} className="ml-1" /> : <Play size={24} className="ml-1" />}
+              {isPlaying ? 
+                <Pause size={isMobile ? 20 : 24} className="ml-0.5" /> : 
+                <Play size={isMobile ? 20 : 24} className="ml-1" />
+              }
             </button>
           </div>
 
           {/* Pagination */}
           {withPagination && (
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
+            <div className="absolute bottom-3 md:bottom-6 left-0 right-0 flex justify-center space-x-1 md:space-x-2">
               {[...Array(6)].map((_, i) => (
                 <span
                   key={i}
-                  className={`inline-block h-1.5 rounded-full transition-all duration-300 ${
-                    i === 0 ? "w-6 bg-white" : "w-1.5 bg-gray-600"
+                  className={`inline-block h-1 md:h-1.5 rounded-full transition-all duration-300 ${
+                    i === 0 ? "w-4 md:w-6 bg-white" : "w-1 md:w-1.5 bg-gray-600"
                   }`}
                 />
               ))}

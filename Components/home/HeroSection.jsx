@@ -11,7 +11,7 @@ const fadeIn = {
 };
 
 const buttonVariants = {
-  hover: { scale: 1.1, transition: { duration: 0.3 } },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
 const CarouselDots = ({ total, active, onDotClick }) => {
@@ -21,7 +21,7 @@ const CarouselDots = ({ total, active, onDotClick }) => {
         <button
           key={index}
           onClick={() => onDotClick(index)}
-          className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+          className={`h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full transition-colors duration-300 ${
             active === index ? 'bg-teal-400' : 'bg-white'
           }`}
           aria-label={`Go to slide ${index + 1}`}
@@ -33,33 +33,33 @@ const CarouselDots = ({ total, active, onDotClick }) => {
 
 const HeroSection = ({ activeSlide, totalSlides, onDotClick }) => {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[85vh] sm:h-screen overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={herobg}
           alt="Gaming background"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
           quality={100}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-60 sm:bg-opacity-50"></div>
       </div>
       
-      <div className="relative h-full flex flex-col justify-center px-16 max-w-6xl mx-auto">
+      <div className="relative h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 max-w-6xl mx-auto">
         <motion.h1
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="text-6xl font-bold text-white leading-tight mb-6"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 sm:mb-6"
         >
-          The Ultimate Gaming &<br /> Sports Streaming Platform
+          The Ultimate Gaming &<br className="hidden sm:block" /> Sports Streaming Platform
         </motion.h1>
         <motion.p
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="text-xl text-white mb-10"
+          className="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-10"
         >
           Join the next generation of competitive gaming and sports streaming
         </motion.p>
@@ -68,21 +68,21 @@ const HeroSection = ({ activeSlide, totalSlides, onDotClick }) => {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="flex items-center space-x-4"
+          className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4"
         >
           <motion.button
             variants={buttonVariants}
             whileHover="hover"
-            className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-8 rounded-md transition-colors duration-300"
+            className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-md transition-colors duration-300 text-sm sm:text-base"
           >
             Start Watching
           </motion.button>
           <motion.button
             variants={buttonVariants}
             whileHover="hover"
-            className="flex items-center text-teal-400 hover:text-teal-300 transition-colors duration-300"
+            className="flex items-center text-teal-400 hover:text-teal-300 transition-colors duration-300 text-sm sm:text-base"
           >
-            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-teal-400 bg-opacity-20 text-teal-400 mr-2">
+            <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-teal-400 bg-opacity-20 text-teal-400 mr-2">
               i
             </span>
             What is Atrena?
@@ -90,7 +90,7 @@ const HeroSection = ({ activeSlide, totalSlides, onDotClick }) => {
         </motion.div>
       </div>
       
-      <div className="absolute bottom-8 w-full">
+      <div className="absolute bottom-4 sm:bottom-8 w-full">
         <CarouselDots total={totalSlides} active={activeSlide} onDotClick={onDotClick} />
       </div>
     </div>
@@ -99,25 +99,25 @@ const HeroSection = ({ activeSlide, totalSlides, onDotClick }) => {
 
 const SectionWithBackground = () => {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[85vh] sm:h-screen overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src="/heroimg.png"
           alt="Section background"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
           quality={100}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-70 sm:bg-opacity-60"></div>
       </div>
 
-      <div className="relative h-full flex flex-col justify-center items-center px-8 text-center max-w-4xl mx-auto">
+      <div className="relative h-full flex flex-col justify-center items-center px-4 sm:px-8 text-center max-w-4xl mx-auto">
         <motion.h2
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="text-5xl font-bold text-white mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-6"
         >
           Discover Exclusive Content & Live Events
         </motion.h2>
@@ -125,14 +125,14 @@ const SectionWithBackground = () => {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="text-lg text-white mb-8"
+          className="text-sm sm:text-base md:text-lg text-white mb-5 sm:mb-8"
         >
           Stay ahead in the world of gaming and sports entertainment with our premium streaming services.
         </motion.p>
         <motion.button
           variants={buttonVariants}
           whileHover="hover"
-          className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-8 rounded-md transition-colors duration-300"
+          className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-md transition-colors duration-300 text-sm sm:text-base"
         >
           Learn More
         </motion.button>

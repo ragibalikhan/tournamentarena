@@ -11,11 +11,11 @@ const leaderboardData = [
 
 const LeaderboardSection = () => {
   return (
-    <div className="bg-black text-white p-6">
+    <div className="bg-black text-white p-3 sm:p-4 md:p-6">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Tournament Leaderboard</h2>
-          <Trophy className="h-6 w-10 text-green-400" />
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Tournament Leaderboard</h2>
+          <Trophy className="h-5 w-8 sm:h-6 sm:w-10 text-green-400" />
         </div>
         
         {/* Table with border gradient effect */}
@@ -23,14 +23,14 @@ const LeaderboardSection = () => {
           {/* Glow effect around table borders */}
           <div className="absolute -inset-1 bg-green-800/30 blur-md rounded-lg" />
           
-          <div className="relative overflow-hidden rounded-lg bg-black border border-gray-800/50">
+          <div className="relative overflow-x-auto rounded-lg bg-black border border-gray-800/50">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-800 bg-black/80">
-                  <th className="px-6 py-4 text-left text-sm font-medium">Rank</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium">Player</th>
-                  <th className="px-6 py-4 text-right text-sm font-medium">Score</th>
-                  <th className="px-6 py-4 text-right text-sm font-medium">Prize</th>
+                  <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-medium">Rank</th>
+                  <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-medium">Player</th>
+                  <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-medium">Score</th>
+                  <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-medium">Prize</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-800/50">
@@ -39,16 +39,16 @@ const LeaderboardSection = () => {
                     key={index} 
                     className={`${index < 3 ? 'bg-green-900/20' : ''}`}
                   >
-                    <td className="px-6 py-4">
-                      <span className={`${index < 3 ? 'text-green-400' : 'text-gray-400'} font-medium`}>
+                    <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
+                      <span className={`${index < 3 ? 'text-green-400' : 'text-gray-400'} text-xs sm:text-sm font-medium`}>
                         {item.rank}
                       </span>
                     </td>
-                    <td className="px-6 py-4">{item.player}</td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm">{item.player}</td>
+                    <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm">
                       <span className="text-green-400">{item.score}</span>
                     </td>
-                    <td className="px-6 py-4 text-right font-medium">
+                    <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm font-medium">
                       {item.prize}
                     </td>
                   </tr>
