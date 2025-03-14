@@ -109,7 +109,7 @@ const SectionWithBackground = () => {
           priority
           quality={100}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        {/* <div className="absolute inset-0 bg-black bg-opacity-60"></div> */}
       </div>
 
       <div className="relative h-full flex flex-col justify-center items-center px-8 text-center max-w-4xl mx-auto">

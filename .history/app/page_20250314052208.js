@@ -22,8 +22,6 @@ import EventsSection from '@/components/home/EventsSection';
 import SHero from "@/Components/Secondhero";
 import VideoSec from "@/Components/Videosec";
 
-import VideoSlider from "@/Components/VideoSlider";
-
 export default function Home() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -58,7 +56,7 @@ export default function Home() {
 
           <LeaderboardSection />
 
-         <VideoSlider/>
+          <VideoSec />
 
           {/* <VideoSection withPagination={true} /> */}
 

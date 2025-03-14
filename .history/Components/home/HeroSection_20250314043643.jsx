@@ -97,50 +97,6 @@ const HeroSection = ({ activeSlide, totalSlides, onDotClick }) => {
   );
 };
 
-const SectionWithBackground = () => {
-  return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src="/heroimg.png"
-          alt="Section background"
-          fill
-          className="object-cover"
-          priority
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-      </div>
-
-      <div className="relative h-full flex flex-col justify-center items-center px-8 text-center max-w-4xl mx-auto">
-        <motion.h2
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          className="text-5xl font-bold text-white mb-6"
-        >
-          Discover Exclusive Content & Live Events
-        </motion.h2>
-        <motion.p
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          className="text-lg text-white mb-8"
-        >
-          Stay ahead in the world of gaming and sports entertainment with our premium streaming services.
-        </motion.p>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-8 rounded-md transition-colors duration-300"
-        >
-          Learn More
-        </motion.button>
-      </div>
-    </div>
-  );
-};
-
 const StreamingPlatform = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = 6;
@@ -159,7 +115,6 @@ const StreamingPlatform = () => {
         totalSlides={totalSlides} 
         onDotClick={setActiveSlide} 
       />
-      <SectionWithBackground />
     </div>
   );
 };

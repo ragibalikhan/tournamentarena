@@ -22,8 +22,6 @@ import EventsSection from '@/components/home/EventsSection';
 import SHero from "@/Components/Secondhero";
 import VideoSec from "@/Components/Videosec";
 
-import VideoSlider from "@/Components/VideoSlider";
-
 export default function Home() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -48,17 +46,14 @@ export default function Home() {
           {/* <div className="max-w-6xl mx-auto px-4 py-8">
             <TournamentCard />
           </div> */}
-          <VideoSec />
 
           <TournamentMatchup/>
 
-          
+          <VideoSec />
 
           <FoundersClub />
 
           <LeaderboardSection />
-
-         <VideoSlider/>
 
           {/* <VideoSection withPagination={true} /> */}
 

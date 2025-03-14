@@ -102,7 +102,7 @@ const SectionWithBackground = () => {
     <div className="relative w-full h-screen overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/heroimg.png"
+          src={herobg}
           alt="Section background"
           fill
           className="object-cover"
@@ -141,27 +141,27 @@ const SectionWithBackground = () => {
   );
 };
 
-const StreamingPlatform = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const totalSlides = 6;
+// const StreamingPlatform = () => {
+//   const [activeSlide, setActiveSlide] = useState(0);
+//   const totalSlides = 6;
   
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % totalSlides);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [totalSlides]);
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setActiveSlide((prev) => (prev + 1) % totalSlides);
+//     }, 5000);
+//     return () => clearInterval(interval);
+//   }, [totalSlides]);
   
-  return (
-    <div className="w-full min-h-screen bg-black text-white">
-      <HeroSection 
-        activeSlide={activeSlide} 
-        totalSlides={totalSlides} 
-        onDotClick={setActiveSlide} 
-      />
-      <SectionWithBackground />
-    </div>
-  );
-};
+//   return (
+//     <div className="w-full min-h-screen bg-black text-white">
+//       <HeroSection 
+//         activeSlide={activeSlide} 
+//         totalSlides={totalSlides} 
+//         onDotClick={setActiveSlide} 
+//       />
+//       <SectionWithBackground />
+//     </div>
+//   );
+// };
 
-export default StreamingPlatform;
+// export default StreamingPlatform;

@@ -17,12 +17,8 @@ import CategoryPills from '@/components/home/CategoryPills';
 import TournamentCard from '@/components/home/TournamentCard';
 import FoundersClub from '@/components/home/FoundersClub';
 import LeaderboardSection from '@/components/home/LeaderboardSection';
-
+import VideoSection from '@/components/home/VideoSection';
 import EventsSection from '@/components/home/EventsSection';
-import SHero from "@/Components/Secondhero";
-import VideoSec from "@/Components/Videosec";
-
-import VideoSlider from "@/Components/VideoSlider";
 
 export default function Home() {
   useEffect(() => {
@@ -38,9 +34,8 @@ export default function Home() {
 
       <main>
         <Hero />
-        {/* <HeroSection /> */}
-
-        <SHero/>
+        <HeroSection />
+        
   
         <div className="bg-black">
           <CategoryPills />
@@ -48,19 +43,16 @@ export default function Home() {
           {/* <div className="max-w-6xl mx-auto px-4 py-8">
             <TournamentCard />
           </div> */}
-          <VideoSec />
 
           <TournamentMatchup/>
 
-          
+          <VideoSection />
 
           <FoundersClub />
 
           <LeaderboardSection />
 
-         <VideoSlider/>
-
-          {/* <VideoSection withPagination={true} /> */}
+          <VideoSection withPagination={true} />
 
           <EventsSection />
         </div>
