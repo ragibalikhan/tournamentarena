@@ -1,19 +1,19 @@
-"use client"; // ✅ Add this at the top of the file
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function Hero() {
   const [hideHero, setHideHero] = useState(false);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const { scrollY } = useScroll();
 
+  // ✅ Correct usage: Call `useMotionValueEvent` directly inside the component
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
       setHideHero(true);
     }
   });
 
-  if (hideHero) return null;
+  if (hideHero) return null; // Once hidden, do not render anything
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
