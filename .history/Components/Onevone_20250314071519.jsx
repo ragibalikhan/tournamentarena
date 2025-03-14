@@ -27,7 +27,7 @@ export default function TournamentMatchup() {
             animate={{ x: [0, 200, 0] }}
             transition={{ repeat: Infinity, duration: 3, ease: 'linear' }}
           ></motion.div>
-          <Image src={tanner} alt="Phoenix" width={150} height={250} className="w-48 h-48 " />
+          <Image src={tanner} alt="Phoenix" width={150} height={150} className="w-48 h-48 " />
           <h2 className="text-4xl font-bold mt-4 uppercase tracking-wide">PHOENIX</h2>
           <p className="text-red-400 text-lg uppercase tracking-widest">United Kingdom</p>
         </motion.div>
@@ -57,7 +57,7 @@ export default function TournamentMatchup() {
             animate={{ x: [0, 200, 0] }}
             transition={{ repeat: Infinity, duration: 3, ease: 'linear' }}
           ></motion.div>
-          <Image src={tyl} alt="Sage" width={150} height={250} className="w-48 h-48 " />
+          <Image src={tyl} alt="Sage" width={150} height={150} className="w-48 h-48 " />
           <h2 className="text-4xl font-bold mt-4 uppercase tracking-wide">SAGE</h2>
           <p className="text-red-400 text-lg uppercase tracking-widest">Spain</p>
         </motion.div>

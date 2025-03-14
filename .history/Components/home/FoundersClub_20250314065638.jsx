@@ -48,7 +48,7 @@ const FoundersClub = () => {
     setStatus({ success: null, message: "" });
 
     const webAppUrl =
-      "https://script.google.com/macros/s/AKfycbxSjJ0BWdN9HJxcA30UYPKo3ZwORWN4wJYwD10hFuCIU83gDZQ4R4ngiYgVizFEu94B/exec";
+      "https://script.google.com/macros/s/AKfycbxxdWjrJtzs0Wz1vMo5hcFzSQ_PINcW_TIcx4C9o5rD5gJoYAM7CXsb174W2yW6pLiF/exec";
 
     try {
       const response = await fetch(webAppUrl, {

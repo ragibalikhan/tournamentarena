@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Crown, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { Crown, CheckCircle, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FoundersClub = () => {
@@ -14,20 +14,19 @@ const FoundersClub = () => {
     platform: "",
     referral: "",
   });
-
+  
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ success: null, message: "" });
-  const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
     let newErrors = {};
-
+    
     if (!formData.name.trim()) newErrors.name = "Name is required.";
     if (!formData.sportGame.trim()) newErrors.sportGame = "Sport/Game is required.";
     if (!formData.mobile.match(/^\d{10}$/)) newErrors.mobile = "Enter a valid 10-digit mobile number.";
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) newErrors.email = "Enter a valid email address.";
     if (!formData.platform.trim()) newErrors.platform = "Platform is required.";
-
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,33 +43,25 @@ const FoundersClub = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    setIsLoading(true);
-    setStatus({ success: null, message: "" });
-
-    const webAppUrl =
-      "https://script.google.com/macros/s/AKfycbxSjJ0BWdN9HJxcA30UYPKo3ZwORWN4wJYwD10hFuCIU83gDZQ4R4ngiYgVizFEu94B/exec";
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxbfHdEfzPT4mIeJ-GHO_A4M9bNQ8eaUqCW1BEEtEuzJ77DriFt5DPP0Xw_j_tDr9xe/exec";
 
     try {
       const response = await fetch(webAppUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-        mode: "cors",  // 🔹 Allow CORS
-        credentials: "omit",  // 🔹 Prevent cookies from being sent
       });
 
       const result = await response.json();
-
-      if (response.ok && result.status === "success") {
+      
+      if (result.status === "success") {
         setStatus({ success: true, message: "Sign-up successful!" });
         setFormData({ name: "", sportGame: "", mobile: "", email: "", platform: "", referral: "" });
       } else {
-        throw new Error(result.message || "Submission failed. Try again.");
+        throw new Error("Submission failed. Try again.");
       }
     } catch (error) {
-      setStatus({ success: false, message: error.message || "Error submitting data. Please try again." });
-    } finally {
-      setIsLoading(false);
+      setStatus({ success: false, message: "Error submitting data. Please try again." });
     }
   };
 
@@ -87,17 +78,9 @@ const FoundersClub = () => {
             <p className="text-gray-400 mb-8">Be among the first 200 content creators to shape the future of Atrena</p>
 
             {status.success !== null && (
-              <motion.div
-                className={`rounded-lg p-6 mb-6 ${
-                  status.success ? "bg-green-800" : "bg-red-800"
-                }`}
-              >
+              <motion.div className={`rounded-lg p-6 mb-6 ${status.success ? "bg-green-800" : "bg-red-800"}`}>
                 <div className="flex items-center justify-center mb-4">
-                  {status.success ? (
-                    <CheckCircle className="h-10 w-10 text-white" />
-                  ) : (
-                    <XCircle className="h-10 w-10 text-white" />
-                  )}
+                  {status.success ? <CheckCircle className="h-10 w-10 text-white" /> : <XCircle className="h-10 w-10 text-white" />}
                 </div>
                 <h3 className="text-lg font-bold">{status.message}</h3>
               </motion.div>
@@ -114,9 +97,7 @@ const FoundersClub = () => {
                   { id: "referral", label: "How did you find us?", type: "text" },
                 ].map((field) => (
                   <div key={field.id}>
-                    <label htmlFor={field.id} className="block text-sm text-gray-400 mb-1">
-                      {field.label}
-                    </label>
+                    <label htmlFor={field.id} className="block text-sm text-gray-400 mb-1">{field.label}</label>
                     <input
                       type={field.type}
                       id={field.id}
@@ -133,18 +114,8 @@ const FoundersClub = () => {
               </div>
 
               <div className="text-center">
-                <Button
-                  type="submit"
-                  className="px-8 py-2 bg-green-400 text-white hover:bg-green-500 rounded font-medium"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <Loader2 className="animate-spin h-5 w-5" /> Submitting...
-                    </div>
-                  ) : (
-                    "Sign Up Early"
-                  )}
+                <Button type="submit" className="px-8 py-2 bg-green-400 text-white hover:bg-green-500 rounded font-medium">
+                  Sign Up Early
                 </Button>
               </div>
             </motion.form>
