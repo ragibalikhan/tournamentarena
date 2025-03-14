@@ -44,7 +44,7 @@ const SHero = () => {
           className={`absolute inset-0 flex items-center justify-start px-12 ${index === currentSlide ? 'block' : 'hidden'}`}
         >
           {/* Background Image */}
-          <Image src={slide.image} alt={slide.title} layout="fill" objectFit="cover" className="opacity-40" />
+          <Image src={slide.image} alt={slide.title} fill style={{ objectFit: 'cover' }} className="opacity-40" />
 
           {/* Content */}
           <div className="relative z-10 max-w-lg">

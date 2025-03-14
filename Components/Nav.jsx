@@ -1,6 +1,5 @@
-'use client';
-
 import { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,13 +8,8 @@ const Navbar = () => {
     <nav className="bg-black text-white border-b border-b-green-500/20">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <a className="text-2xl font-bold tracking-wider" href="#">
-          <span className="text-yellow-500/90 font-bold">A</span>
-          <span className="text-yellow-500/90 font-bold">I</span>
-          <span className="text-yellow-500/90 font-bold">R</span>
-          <span className="text-yellow-500/90 font-bold">E</span>
-          <span className="text-yellow-500/90 font-bold">N</span>
-          <span className="text-yellow-500/90 font-bold">A</span>
+        <a href="#">
+          <Image src="/logo.png" alt="Arena Logo" width={120} height={40} />
         </a>
 
         {/* Desktop Menu - Right Aligned */}
@@ -32,10 +26,10 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          
+
           {/* Sign In Button */}
-          <a 
-            href="#" 
+          <a
+            href="#"
             className="border border-green-500/70 text-white px-6 py-2 rounded-md hover:bg-green-500/10 transition duration-300"
           >
             Sign In
