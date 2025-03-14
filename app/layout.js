@@ -1,4 +1,4 @@
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/Components/ui/sonner"
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
