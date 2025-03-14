@@ -24,41 +24,26 @@ const FoundersClub = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const webAppUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL";
-  
-    try {
-      const response = await fetch(webAppUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    // Handle signup logic here
+    console.log("Signup form data:", formData);
+    // Show success animation
+    setSubmitted(true);
+    
+    // Reset after showing success
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({
+        name: "",
+        sportGame: "",
+        mobile: "",
+        email: "",
+        platform: "",
+        referral: "",
       });
-  
-      const result = await response.json();
-      console.log("Google Sheets response:", result);
-  
-      if (result.status === "success") {
-        setSubmitted(true);
-        setTimeout(() => {
-          setSubmitted(false);
-          setFormData({
-            name: "",
-            sportGame: "",
-            mobile: "",
-            email: "",
-            platform: "",
-            referral: "",
-          });
-        }, 2000);
-      }
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
+    }, 2000);
   };
-  
 
   // Animation variants
   const containerVariants = {
